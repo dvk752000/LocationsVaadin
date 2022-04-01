@@ -79,11 +79,6 @@ public class Contacts extends VerticalLayout {
         closeEditor();
     }
 
-    private void deleteLocation(LocationForm.SaveEvent event){
-        service.deleteLocation(event.getLocation());
-        updateList();
-        closeEditor();
-    }
     private Component getToolbar() {
         filteText.setPlaceholder("Filter by location name...");
         filteText.setClearButtonVisible(true);
