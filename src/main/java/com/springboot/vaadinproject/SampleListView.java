@@ -21,6 +21,5 @@ public class SampleListView extends VerticalLayout {
         add(horizontalLayout);
 
         button.addClickListener(click -> Notification.show("Hello, " + name.getValue()) );
-        
     }
 }
