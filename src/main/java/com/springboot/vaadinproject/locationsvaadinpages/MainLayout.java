@@ -1,5 +1,6 @@
 package com.springboot.vaadinproject.locationsvaadinpages;
 
+import com.springboot.vaadinproject.SampleListView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.H1;
@@ -17,10 +18,12 @@ public class MainLayout extends AppLayout {
 
     private void createDrawer() {
         RouterLink listView = new RouterLink("List", LocationsMainPage.class);
+        RouterLink simpleListView = new RouterLink("SampleList", SampleListView.class);
         listView.setHighlightCondition(HighlightConditions.sameLocation());
         addToDrawer(
             new VerticalLayout(
-                listView
+                listView,
+                simpleListView
             )
         );
     }

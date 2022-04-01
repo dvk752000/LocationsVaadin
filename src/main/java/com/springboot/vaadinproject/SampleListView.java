@@ -1,5 +1,7 @@
 package com.springboot.vaadinproject;
 
+import javax.annotation.security.PermitAll;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
@@ -9,7 +11,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 @PageTitle("List")
-@Route(value = "Basic List")
+@Route(value = "SimpleList")
+@PermitAll
 public class SampleListView extends VerticalLayout {
     public SampleListView(){
         Button button = new Button("Click ME");
