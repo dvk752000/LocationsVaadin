@@ -1,4 +1,4 @@
-package com.springboot.vaadinproject.contacts;
+package com.springboot.vaadinproject.locationsvaadinpages;
 
 import java.util.List;
 

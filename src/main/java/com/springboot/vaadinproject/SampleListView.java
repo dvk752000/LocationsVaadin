@@ -10,8 +10,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 @PageTitle("List")
 @Route(value = "Basic List")
-public class ListView extends VerticalLayout {
-    public ListView(){
+public class SampleListView extends VerticalLayout {
+    public SampleListView(){
         Button button = new Button("Click ME");
         TextField name = new TextField("Name");
         add(new H1("Hello World"));

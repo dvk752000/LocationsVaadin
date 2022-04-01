@@ -1,4 +1,6 @@
-package com.springboot.vaadinproject.contacts;
+package com.springboot.vaadinproject.locationsvaadinpages;
+
+import javax.annotation.security.PermitAll;
 
 import com.springboot.vaadinproject.location.Location;
 import com.springboot.vaadinproject.location.LocationService;
@@ -13,8 +15,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @PageTitle("Contacts | Vaadin")
-@Route(value = "")
-public class Contacts extends VerticalLayout {
+@Route(value = "", layout = MainLayout.class)
+@PermitAll
+public class LocationsMainPage extends VerticalLayout {
 
     Grid<Location> grid = new Grid<>(Location.class);
     TextField filteText = new TextField();
@@ -22,7 +25,7 @@ public class Contacts extends VerticalLayout {
     private LocationService service;
 
 
-    public Contacts(LocationService service){
+    public LocationsMainPage(LocationService service){
         this.service = service;
         addClassName("list-view");//for any CSS
         setSizeFull(); //set size to entire browser window
