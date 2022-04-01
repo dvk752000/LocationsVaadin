@@ -36,6 +36,13 @@ public class Contacts extends VerticalLayout {
         );
 
         updateList();
+        closeEditor();
+    }
+
+    private void closeEditor() {
+        form.setLocation(null);
+        form.setVisible(false);
+        removeClassName("editing");
     }
 
     private void updateList() {
@@ -55,8 +62,28 @@ public class Contacts extends VerticalLayout {
         form = new LocationForm(service.findAllLocations(""));
         form.setWidth("25em");
 
+        form.addListener(LocationForm.SaveEvent.class, this::saveLocation);
+        form.addListener(LocationForm.DeleteEvent.class, this::deleteLocation);
+        form.addListener(LocationForm.CloseEvent.class, e -> closeEditor());
     }
 
+    private void saveLocation(LocationForm.SaveEvent event){
+        service.saveLocation(event.getLocation());
+        updateList();
+        closeEditor();
+    }
+
+    private void deleteLocation(LocationForm.DeleteEvent event){
+        service.deleteLocation(event.getLocation());
+        updateList();
+        closeEditor();
+    }
+
+    private void deleteLocation(LocationForm.SaveEvent event){
+        service.deleteLocation(event.getLocation());
+        updateList();
+        closeEditor();
+    }
     private Component getToolbar() {
         filteText.setPlaceholder("Filter by location name...");
         filteText.setClearButtonVisible(true);
@@ -65,10 +92,16 @@ public class Contacts extends VerticalLayout {
         filteText.addValueChangeListener(e -> updateList());
 
         Button addLocationButton = new Button("Add Location");
+        addLocationButton.addClickListener(e -> addLocation());
 
         HorizontalLayout toolBar = new HorizontalLayout(filteText, addLocationButton);
         toolBar.addClassName("toolBar");
         return toolBar;
+    }
+
+    private void addLocation() {
+        grid.asSingleSelect().clear();
+        editLocation(new Location("1", ""));
     }
 
     private void configureGrid() {
@@ -79,5 +112,18 @@ public class Contacts extends VerticalLayout {
         //for custom objects in the class
         //grid.addColumns(location -> location.getPlace().getName()).setHeader("Place") - It will had a column and set header
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
+
+        grid.asSingleSelect().addValueChangeListener(e -> editLocation(e.getValue()));
+    }
+
+    private Object editLocation(Location location) {
+        if(location == null){
+            closeEditor();
+        }else{
+            form.setLocation(location);
+            form.setVisible(true);
+            addClassName("editing");
+        }
+        return null;
     }
 }

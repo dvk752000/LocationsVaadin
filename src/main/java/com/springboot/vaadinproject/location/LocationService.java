@@ -37,6 +37,12 @@ public class LocationService {
             System.err.println("Location is Null");
             return;
         }
-        locationRepository.save(location);
+        try{
+            System.out.println("Location to be counted: " + location);
+            locationRepository.save(location);
+        }catch(Exception e){
+            System.out.println("Could not insert new row due to error: " + e);
+        }
+        
     }    
 }

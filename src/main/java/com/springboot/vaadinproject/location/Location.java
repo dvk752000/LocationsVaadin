@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Location {
 	@Id
 	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
 	public Location() {
@@ -34,6 +34,11 @@ public class Location {
 	}
 	public Location(String name) {
 		super();
+		this.name = name;
+	}
+	public Location(String id, String name) {
+		super();
+		this.id = id;
 		this.name = name;
 	}
 	@Override
